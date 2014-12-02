@@ -1,0 +1,10 @@
+{
+    "name": "swisscom/httpforwardproxy",
+    "type": "typo3-flow-package",
+    "description": "Extend CurlEngine with forward proxy functionality",
+    "autoload": {
+        "psr-0": {
+            "Swisscom\\HttpForwardProxy": "Classes"
+        }
+    }
+}

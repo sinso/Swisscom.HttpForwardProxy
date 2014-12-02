@@ -1,0 +1,9 @@
+Swisscom:
+  HttpForwardProxy:
+    proxy:
+      enable: FALSE
+      host: ''
+      port: 8888
+      username: ''
+      password: ''
+      proxyTunnel: FALSE
