@@ -46,7 +46,16 @@ class CurlEngineProxy extends CurlEngine {
 			$this->setProxy();
 		}
 
-		$response = parent::sendRequest($request);
+		$proxyResponse = parent::sendRequest($request);
+
+		// unwrap proxy response if applicable
+		$lines = explode(chr(10), $proxyResponse->getContent());
+		$firstLine = array_shift($lines);
+		if (substr($firstLine, 0, 5) === 'HTTP/') {
+			$response = Response::createFromRaw($proxyResponse->getContent());
+		} else {
+			$response = $proxyResponse;
+		}
 
 		$this->options = $backupOptions;
 
