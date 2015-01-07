@@ -79,7 +79,40 @@ class CurlEngineProxy extends CurlEngine {
 			if ($this->settings['proxyTunnel']) {
 				$this->setOption(CURLOPT_HTTPPROXYTUNNEL, TRUE);
 			}
+
+			if ($this->settings['curlOptions']) {
+				$parsedCurlOptions = self::parseCurlConfig($this->settings['curlOptions']);
+
+				foreach ($parsedCurlOptions as $key => $value) {
+					$this->setOption($key, $value);
+				}
+			}
+
 		}
+	}
+
+	/**
+	 * Parse the config and replace curl.* configurators into the constant based values so it can be used elsewhere
+	 * Credits: Guzzle https://github.com/guzzle/guzzle
+	 *
+	 * @param array|Collection $config The configuration we want to parse
+	 *
+	 * @return array
+	 */
+	public static function parseCurlConfig($config) {
+		$curlOptions = array();
+		foreach ($config as $key => $value) {
+			if (is_string($key) && defined($key)) {
+				// Convert constants represented as string to constant int values
+				$key = constant($key);
+			}
+			if (is_string($value) && defined($value)) {
+				$value = constant($value);
+			}
+			$curlOptions[$key] = $value;
+		}
+
+		return $curlOptions;
 	}
 
 }
