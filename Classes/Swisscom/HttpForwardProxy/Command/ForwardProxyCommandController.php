@@ -7,11 +7,11 @@ namespace Swisscom\HttpForwardProxy\Command;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Http\Client\CurlEngine;
-use TYPO3\Flow\Http\Request;
-use TYPO3\Flow\Http\Uri;
-use TYPO3\Flow\Cli\CommandController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Http\Client\CurlEngine;
+use Neos\Flow\Http\Request;
+use Neos\Flow\Http\Uri;
+use Neos\Flow\Cli\CommandController;
 
 /**
  * @Flow\Scope("singleton")
@@ -29,7 +29,7 @@ class ForwardProxyCommandController extends CommandController {
 	 * @param string $url URL
 	 * @return void
 	 */
-	public function getUrlCommand($url = 'http://flow.typo3.org/home') {
+	public function getUrlCommand($url = 'https://flow.neos.io/') {
 		$uri = new Uri($url);
 		$request = Request::create($uri);
 		$response = $this->curlEngine->sendRequest($request);

@@ -1,5 +1,5 @@
 <?php
-namespace Swisscom\HttpForwardProxy\AOP;
+namespace Swisscom\HttpForwardProxy\Aop;
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package                          *
  * "Swisscom.HttpForwardProxy".                                           *
@@ -7,7 +7,7 @@ namespace Swisscom\HttpForwardProxy\AOP;
  *                                                                        */
 
 use Swisscom\HttpForwardProxy\CurlEngineProxy;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Class LanguageDetectionAspect
@@ -30,10 +30,10 @@ class ProxyAspect {
 	}
 
 	/**
-	 * @Flow\Around("method(TYPO3\Flow\Http\Client|CurlEngine->sendRequest())")
+	 * @Flow\Around("method(Neos\Flow\Http\Client|CurlEngine->sendRequest())")
 	 * @return void
 	 */
-	public function addProxyConfigurationAdvice(\TYPO3\Flow\AOP\JoinPointInterface $joinPoint) {
+	public function addProxyConfigurationAdvice(\Neos\Flow\Aop\JoinPointInterface $joinPoint) {
 		$request = $joinPoint->getMethodArgument('request');
 
 		//$result = $joinPoint->getAdviceChain()->proceed($joinPoint);
