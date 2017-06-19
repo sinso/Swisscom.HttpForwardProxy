@@ -11,11 +11,11 @@ namespace Swisscom\HttpForwardProxy;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Http\Client\CurlEngineException;
-use TYPO3\Flow\Http\Request;
-use TYPO3\Flow\Http\Response;
-use TYPO3\Flow\Http\Client\CurlEngine;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Http\Client\CurlEngineException;
+use Neos\Flow\Http\Request;
+use Neos\Flow\Http\Response;
+use Neos\Flow\Http\Client\CurlEngine;
 
 /**
  * A Request Engine which uses cURL in order to send requests to external
@@ -24,7 +24,7 @@ use TYPO3\Flow\Http\Client\CurlEngine;
 class CurlEngineProxy extends CurlEngine {
 
 	/**
-	 * @Flow\Inject(setting="proxy")
+	 * @Flow\InjectConfiguration("proxy")
 	 * @var array
 	 */
 	protected $settings;
@@ -32,10 +32,10 @@ class CurlEngineProxy extends CurlEngine {
 	/**
 	 * Sends the given HTTP request
 	 *
-	 * @param \TYPO3\Flow\Http\Request $request
-	 * @return \TYPO3\Flow\Http\Response The response or FALSE
+	 * @param \Neos\Flow\Http\Request $request
+	 * @return \Neos\Flow\Http\Response The response or FALSE
 	 * @api
-	 * @throws \TYPO3\Flow\Http\Exception
+	 * @throws \Neos\Flow\Http\Exception
 	 * @throws CurlEngineException
 	 */
 	public function sendRequest(Request $request) {
